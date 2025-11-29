@@ -1,0 +1,55 @@
+name: CI/CD MEAN Deploy
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    
+    - name: Build backend Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mean-backend:latest ./backend
+
+    
+    - name: Build frontend Docker image
+      run: |
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/mean-frontend:latest ./frontend
+
+    
+    - name: Docker Hub Login
+      run: |
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+    
+    - name: Push images to Docker Hub
+      run: |
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/mean-backend:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/mean-frontend:latest
+
+    
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          cd ~/Discover_Dollar
+
+          # pull latest images
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mean-backend:latest
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mean-frontend:latest
+
+          # restart containers
+          sudo docker-compose down
+          sudo docker-compose up -d
+
+          echo "Deployment Successful!"
