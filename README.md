@@ -28,6 +28,9 @@ This project is a CRUD application built using the MEAN stack:
 - ❌ Delete a tutorial
 - 🔍 Search tutorials by title
 
+![App UI](Images/App.png)
+![Tutorial List](Images/Tutoriallist.png)
+
 ---
 
 ## 🏗️ Architecture Diagram
@@ -54,8 +57,14 @@ This project is a CRUD application built using the MEAN stack:
            │  │ (Angular+N) │  │ (Node+Exp.)   │  │        │ │
            │  └─────────────┘  └───────────────┘  └────────┘ │
            └──────────────────────────────────────────────────┘
-```
 
+
+```
+<p align="center">
+  <img src="Images/AWSEC2.png" alt="AWS EC2" width="250"/>
+  <img src="Images/DockerHub.png" alt="Docker Hub" width="250"/>
+  <img src="Images/GithubActions.png" alt="GitHub Actions" width="250"/>
+</p>
 ---
 
 ## 📁 Project Structure
@@ -75,6 +84,8 @@ Discover_Dollar/
 ├── docker-compose.yml     # For EC2 deployment
 ├── README.md
 ```
+![File Structure](Images/Filestru.png)
+
 
 ---
 
@@ -85,6 +96,8 @@ Discover_Dollar/
 ```bash
 docker-compose up --build
 ```
+![Docker Desktop](Images/DockerDesktop.png)
+![Docker Images](Images/Dockerimages.png)
 
 ### Containers:
 | Service   | Port   | Description                |
@@ -105,6 +118,8 @@ The pipeline automatically:
 - ✅ Restarts application
 
 **Workflow file**: `.github/workflows/deploy.yml`
+
+![GitHub Actions](Images/GithubActions.png)
 
 ```yaml
 name: CI/CD MEAN Application Deploy
@@ -200,6 +215,7 @@ docker-compose up -d
 ```
 
 ---
+![SSH](Images/SSH.png)
 
 ## 🙌 Author
 
