@@ -5,7 +5,7 @@ const app = express();
 
 /* ------------------ CORS CONFIG ------------------ */
 app.use(cors({
-  origin: "http://localhost:8082",   // Angular frontend
+  origin: "http://13.232.206.248:8082",   // Angular frontend
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
