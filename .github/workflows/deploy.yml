@@ -44,11 +44,13 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         script: |
           cd ~/Discover_Dollar
+          echo "Pulling latest images..."
+          sudo docker-compose pull
 
-          # Pull latest images
-          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mean-backend:latest
-          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mean-frontend:latest
+          echo "Stopping old containers..."
+          sudo docker-compose down
 
-          # Restart services using new syntax
-          sudo docker compose down
-          sudo docker
+          echo "Starting new containers..."
+          sudo docker-compose up -d
+ 
+          echo "Deployment Successful!"
