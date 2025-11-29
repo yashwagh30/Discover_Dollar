@@ -203,6 +203,5 @@ docker-compose up -d
 
 ## 🙌 Author
 
-**Yash Wagh**  
-DevOps & Cloud Engineer  
+**Yash Wagh**    
 GitHub: [https://github.com/yashwagh30](https://github.com/yashwagh30)
